@@ -1,16 +1,11 @@
-#!groovy
-pipeline {
-    agent none
-   stages {     
-    stage('Maven Install') {
-      agent {         
-       any {          
-         image 'maven:3.5.0'         
-     }       
-  }       
-  steps {
-       sh 'mvn clean install'
-       }
-     }
-   }
- }
+Jenkinsfile (Declarative Pipeline)
+pipeline { 
+    agent any  
+    stages { 
+        stage('Build') { 
+            steps { 
+               echo 'This is a minimal pipeline.' 
+            }
+        }
+    }
+}
