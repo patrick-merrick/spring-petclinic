@@ -6,7 +6,7 @@ pipeline {
   }
   agent any
   tools {
-    maven 'M3'
+    maven 'JAVA_HOME'
     jdk 'jdk-20'
   } 
   stages {
