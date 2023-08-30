@@ -29,7 +29,7 @@ pipeline {
     //     ''' 
     //     //if the code is compiled, we test and package it in its distributable format; run IT and store in local repository
     //   }
-    }
+    // }
     stage('Building Image') {
       steps{
         script {
