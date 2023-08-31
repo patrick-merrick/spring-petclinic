@@ -1,21 +1,10 @@
-# syntax=docker/dockerfile:1
-FROM eclipse-temurin:17-jdk-jammy as builder
-WORKDIR /opt/app
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
-RUN ./mvnw dependency:go-offline
-COPY ./src ./src
-RUN ./mvnw spring-javaformat:apply
-RUN ./mvnw clean package
+# Alpine Linux with OpenJDK JRE
+FROM openjdk:8-jre-alpine
 
-FROM eclipse-temurin:17-jre-jammy
-ARG JAR_NAME
-LABEL name="spring-pet-clinic" \
-description="Docker image for spring pet clinic" 
-RUN addgroup appadmin; adduser  --ingroup appadmin --disabled-password appadmin
-USER appadmin
-WORKDIR /opt/app
-EXPOSE 8080
-#COPY target/*.jar /opt/app/spring-petclinic.jar
-COPY --from=builder /opt/app/target/${JAR_NAME}.jar /opt/app/spring-petclinic.jar
-ENTRYPOINT ["java", "-jar", "/opt/app/spring-petclinic.jar" ]
+EXPOSE 8181
+
+# copy jar into image
+COPY target/spring-petclinic-2.2.0.BUILD-SNAPSHOT.jar /usr/bin/spring-petclinic.jar
+
+# run application with this command line 
+ENTRYPOINT ["java","-jar","/usr/bin/spring-petclinic.jar","--server.port=8181"]
