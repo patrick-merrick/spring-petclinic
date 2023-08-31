@@ -10,11 +10,11 @@ pipeline {
     jdk 'jdk-20'
   } 
   stages {
-    // stage('Cloning Git') {
-    //   steps {
-    //     git 'https://github.com/patrick-merrick/spring-petclinic.git'
-    //   }
-    // }
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/patrick-merrick/spring-petclinic.git'
+      }
+    }
     stage('Compile') {
        steps {
          sh 'mvn clean compile' //only compilation of the code
