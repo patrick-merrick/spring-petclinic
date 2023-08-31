@@ -1,4 +1,11 @@
-FROM anapsix/alpine-java
-LABEL maintainer="patrick.merrick@gmail.comls"
-COPY /target/spring-petclinic-3.1.0-SNAPSHOT.jar /home/spring-petclinic-3.1.0-SNAPSHOT.jar
-CMD ["java","-jar","/home/spring-petclinic-3.1.0-SNAPSHOT.jar"]
+FROM eclipse-temurin:17-jdk-jammy
+ 
+WORKDIR /app
+
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:resolve
+
+COPY src ./src
+
+CMD ["./mvnw", "spring-boot:run"]
