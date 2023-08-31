@@ -17,7 +17,7 @@ pipeline {
     // }
     stage('Compile') {
        steps {
-         sh 'mvn compile' //only compilation of the code
+         sh 'mvn clean compile' //only compilation of the code
        }
     }
     stage('Test') {
