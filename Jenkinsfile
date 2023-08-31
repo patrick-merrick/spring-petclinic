@@ -9,8 +9,8 @@ pipeline {
     maven 'Maven 3.9.4'
     jdk 'jdk-20'
   } 
-/*   stages {
-    stage('Cloning Git') {
+  stages {
+/*     stage('Cloning Git') {
       steps {
         git 'https://github.com/patrick-merrick/spring-petclinic.git'
       }
