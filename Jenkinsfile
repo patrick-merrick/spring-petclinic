@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "patrickm23/spring-petclinic-hub"
+    registry = "patrickmerrick23/spring-petclinic-hub"
     registryCredential = 'docker-hub'
     dockerImage = ''
   }
@@ -9,12 +9,12 @@ pipeline {
     maven 'Maven 3.9.4'
     jdk 'jdk-20'
   } 
-  stages {
+/*   stages {
     stage('Cloning Git') {
       steps {
         git 'https://github.com/patrick-merrick/spring-petclinic.git'
       }
-    }
+    } */
     stage('Compile') {
        steps {
          shell 'mvn clean compile' //only compilation of the code
