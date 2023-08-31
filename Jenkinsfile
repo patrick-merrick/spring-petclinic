@@ -17,12 +17,12 @@ pipeline {
     } */
     stage('Compile') {
        steps {
-         sh 'mvn clean compile' //only compilation of the code
+         shell 'mvn clean compile' //only compilation of the code
        }
     }
     stage('Test') {
       steps {
-        sh '''
+        shell '''
         mvn clean install
         ls
         pwd
@@ -48,7 +48,7 @@ pipeline {
     }
     stage('Remove Unused docker image') {
       steps{
-        sh "docker rmi $registry:latest"
+        shell "docker rmi $registry:latest"
       }
     }
   }
