@@ -30,10 +30,11 @@ pipeline {
         //if the code is compiled, we test and package it in its distributable format; run IT and store in local repository
       }
     }
-    stage('Building Image') {
-      steps{
-        script {
-          dockerImage = docker.build registry + ":latest"
+    stage("Build and start test image") {
+        steps {
+            shell "docker-composer build"
+            shell "docker-compose up -d"
+            waitUntilServicesReady
         }
       }
     }
