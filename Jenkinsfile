@@ -35,7 +35,6 @@ pipeline {
             shell "docker-composer build"
             shell "docker-compose up -d"
             waitUntilServicesReady
-        }
       }
     }
     stage('Deploy Image') {
